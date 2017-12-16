@@ -1,0 +1,16 @@
+<!--*H
+Copyright 2017 Transport Systems Catapult (The Catapult)
+All rights reserved
+For use only for the purpose agreed with The Catapult
+H*-->
+
+<launch>
+
+<!-- ============================ --> 
+<!-- Launch dead_mans_handle node -->
+<!-- ============================ -->
+
+<node pkg="dead_mans_handle" type="deadMansHandle" 
+     name="dead_mans_handle_node" />
+
+</launch>

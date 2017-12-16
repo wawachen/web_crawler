@@ -1,0 +1,17 @@
+<!--*H
+Copyright 2017 Transport Systems Catapult (The Catapult)
+All rights reserved
+For use only for the purpose agreed with The Catapult
+H*-->
+
+<launch>
+
+<!-- ======================= --> 
+<!-- Launch age_checker node -->
+<!-- ======================= -->
+
+<node pkg="age_checker" type="ageChecker" 
+     name="age_checker_node" 
+     args="pod_demand:=pod/pod_demand_limited"/>
+
+</launch>

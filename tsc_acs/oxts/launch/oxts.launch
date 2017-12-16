@@ -1,0 +1,25 @@
+<!--*H
+Copyright 2017 Transport Systems Catapult (The Catapult)
+All rights reserved
+For use only for the purpose agreed with The Catapult
+H*-->
+
+<launch>
+
+<arg name="oxts_term"/>
+
+<!-- ====================== --> 
+<!-- Launch udp client node --> 
+<!-- ====================== --> 
+
+<include file="$(find udp)/launch/udp.launch">
+</include>
+
+<!-- ================ --> 
+<!-- Launch OxTS node --> 
+<!-- ================ --> 
+
+<node pkg="oxts" type="xnav550" 
+     name="oxts_xnav550_node" />
+
+</launch>

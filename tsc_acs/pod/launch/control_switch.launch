@@ -1,0 +1,20 @@
+<!--*H
+Copyright 2017 Transport Systems Catapult (The Catapult)
+All rights reserved
+For use only for the purpose agreed with The Catapult
+H*-->
+
+<launch>
+
+<!-- ==================== --> 
+<!-- Launch control switch node -->
+<!-- ==================== -->
+
+
+#control switch
+<node pkg="pod" type="control_switch"
+		name="control_switch" output="screen"
+		args="_sources:=/acs/demand" />
+	
+
+</launch>

@@ -1,0 +1,50 @@
+<!--*H
+Copyright 2017 Transport Systems Catapult (The Catapult)
+All rights reserved
+For use only for the purpose agreed with The Catapult
+H*-->
+
+<launch>
+
+<!-- ===================== --> 
+<!-- Launch socketcan node -->
+<!-- ===================== -->
+
+<node pkg="socketcan_bridge" type="socketcan_bridge_node" 
+     name="pod_can_device" output="screen"
+     args="_can_device:=can0 received_messages:=pod_can_rx sent_messages:=pod_can_tx"/>
+
+#pod rx
+<node pkg="lutz" type="pod_rx" 
+     name="lutz_pod_rx_node" />
+
+#pod tx
+<node pkg="lutz" type="pod_tx" 
+     name="pod_tx"/>
+
+#handshake
+<node pkg="lutz" type="handshake" 
+     name="handshake"/>
+
+#message_builder
+<node pkg="lutz" type="message_builder" 
+     name="message_builder"
+     args="pod_demand:=pod/pod_demand_on_axle_stands auxiliary_demand:=pod/auxiliary_demand"/>
+
+#session_control
+<node pkg="lutz" type="session_control" 
+     name="session_control"/>
+
+#sound_play
+<node pkg="sound_play" type="soundplay_node.py" 
+     name="sound_play"/>
+
+#text2speech
+<node pkg="lutz" type="text2speech" 
+     name="speech"/>#text2speech
+     
+<node pkg="lutz" type="on_axle_stands" 
+     name="on_axle_stands_node"
+     args="pod_demand:=pod/pod_demand_age_checked"/>
+
+</launch>

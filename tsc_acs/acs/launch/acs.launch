@@ -1,0 +1,27 @@
+<!--*H
+Copyright 2017 Transport Systems Catapult (The Catapult)
+All rights reserved
+For use only for the purpose agreed with The Catapult
+H*-->
+
+<launch>
+
+<!-- =============== --> 
+<!-- Launch acs node -->
+<!-- =============== -->
+
+<arg name="pathFileName"/>
+<param name="pathFileName" value="$(arg pathFileName)"/>
+
+<node pkg="acs" type="gps_to_local" 
+	name="gps_to_local_node"
+	args="batchB:=/oxts/batchB"/>
+     
+<node pkg="acs" type="path_replay" 
+	name="path_replay_node"
+	args="_pathfile:=$(arg pathFileName) _origin:=52.038,-0.768"/> 
+    
+<node pkg="acs" type="auto_demand" 
+	name="auto_demand_node"/>
+	
+</launch>

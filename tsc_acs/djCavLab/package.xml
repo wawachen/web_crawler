@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package>
+  <name>dj_cav_lab</name>
+  <version>0.0.0</version>
+  <description>The django CavLAb package</description>
+  
+  <maintainer email="dave.barnett@ts.catapult.org.uk">Dave Barnett</maintainer>
+  <license>TSC Internal and Agreed Use Only</license>
+  <url type="website">http://ts.catapult.org.uk</url>
+  <author email="dave.barnett@ts.catapult.org.uk">Dave Barnett</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>message_generation</build_depend>
+  <build_depend>rospy</build_depend>
+  <run_depend>rospy</run_depend>
+  <run_depend>lutz</run_depend>
+
+  <export>
+
+  </export>
+</package>

@@ -1,0 +1,17 @@
+<!--*H
+Copyright 2017 Transport Systems Catapult (The Catapult)
+All rights reserved
+For use only for the purpose agreed with The Catapult
+H*-->
+
+<launch>
+
+<!-- ============================ --> 
+<!-- Launch demand_limiter node -->
+<!-- ============================ -->
+
+<node pkg="demand_limiter" type="demandLimiter" 
+     name="demand_limiter_node"
+     args="pod_demand:=pod/pod_demand speed_limit:=pod/speed_limit" />
+
+</launch>

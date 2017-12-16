@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<package>
+  <name>acs</name>
+  <version>0.0.0</version>
+  <description>package for autonomous demand and support nodes</description>
+  
+  <maintainer email="dave.barnett@ts.catapult.org.uk">Dave Barnett</maintainer>
+  <maintainer email="servando.germanserrano@ts.catapult.org.uk">Servando German</maintainer>
+  <maintainer email="ujjar.bhandari@ts.catapult.org.uk">Ujjar Bhandari</maintainer>
+  
+  <license>TSC Internal and Agreed Use Only</license>
+  <url type="website">http://ts.catapult.org.uk</url>
+  
+  <author email="dave.barnett@ts.catapult.org.uk">Dave Barnett</author>
+  <author email="servando.germanserrano@ts.catapult.org.uk">Servando German</author>
+  <author email="ujjar.bhandari@ts.catapult.org.uk">Ujjar Bhandari</author>
+  
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>sensor_msgs</build_depend>
+  <build_depend>geometry_msgs</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_depend>nav_msgs</build_depend>
+  <build_depend>message_generation</build_depend>
+  <build_depend>pod</build_depend>
+  <build_depend>oxts</build_depend>
+  <build_depend>dynamic_reconfigure</build_depend>
+  <run_depend>roscpp</run_depend>
+  <run_depend>sensor_msgs</run_depend>
+  <run_depend>geometry_msgs</run_depend>
+  <run_depend>std_msgs</run_depend>
+  <run_depend>nav_msgs</run_depend>
+  <run_depend>message_runtime</run_depend>
+
+  <export>
+  </export>
+</package>

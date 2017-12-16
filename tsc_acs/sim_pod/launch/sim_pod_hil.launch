@@ -1,0 +1,13 @@
+<!--*H
+Copyright 2017 Transport Systems Catapult (The Catapult)
+All rights reserved
+For use only for the purpose agreed with The Catapult
+H*-->
+
+<launch>
+
+<node pkg="sim_pod" type="sim_ple" name="sim_ple" 
+	args="pod_demand:=pod/pod_demand_age_checked">
+</node>
+
+</launch>

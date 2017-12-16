@@ -1,0 +1,24 @@
+[Desktop Entry]
+Version=1.0
+Name=podLauncher
+Comment=Start all sensors from the pod.
+Exec=gnome-terminal -e 'bash -i -c "source /opt/ros/kinetic/setup.bash && export ROS_HOSTNAME=localhost &&  source /home/ats/catkin_acs/devel/setup.bash && /home/ats/catkin_acs/src/tsc_acs/bacsLaunch/all_rosbag_on.sh"'
+Icon=/usr/share/pixmaps/pod.png
+Terminal=false
+X-MultipleArgs=false
+Type=Application
+Categories=Development;
+StartupNotify=true
+
+Actions=RosbagOff;Demo
+
+[Desktop Action RosbagOff]
+Name=RosbagOff
+Exec=gnome-terminal -e 'bash -i -c "source /opt/ros/kinetic/setup.bash && export ROS_HOSTNAME=localhost &&  source /home/ats/catkin_acs/devel/setup.bash && /home/ats/catkin_acs/src/tsc_acs/bacsLaunch/all_rosbag_off.sh"'
+Terminal=false
+
+[Desktop Action Demo]
+Name=Demo
+Exec=gnome-terminal -e 'bash -i -c "source /opt/ros/kinetic/setup.bash && export ROS_HOSTNAME=localhost &&  source /home/ats/catkin_acs/devel/setup.bash && /home/ats/catkin_acs/src/tsc_acs/bacsLaunch/all_demo.sh"'
+Terminal=false
+

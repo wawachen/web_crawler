@@ -1,0 +1,48 @@
+<!--*H
+Copyright 2017 Transport Systems Catapult (The Catapult)
+All rights reserved
+For use only for the purpose agreed with The Catapult
+H*-->
+
+<launch>
+
+<!-- ==================== --> 
+<!-- Launch joystick node -->
+<!-- ==================== -->
+
+<!--
+<node pkg="joy" type="joy_node"
+		name="joy"
+		args="_dev:=/dev/input/js4" />
+xbox joy ode
+<node pkg="pod" type="xbox_joy"
+		name="xbox_joy" output="screen" />
+-->
+
+#turnigy joy node
+<node pkg="pod" type="turnigy_joy"
+		name="turnigy_joy" output="screen" />
+
+
+#control switch
+<node pkg="pod" type="control_switch"
+		name="control_switch" output="screen"
+		args="_sources:=/pod/turnigy_pod_demand;/acs/demand" />
+
+
+#auxiliary switch
+<node pkg="pod" type="auxiliary_switch"
+		name="auxiliary_switch" output="screen" />
+		
+		
+		
+		
+<!--
+#key entry
+<node pkg="pod" type="key_entry"
+		name="key_entry" output="screen" />
+-->
+
+
+
+</launch>

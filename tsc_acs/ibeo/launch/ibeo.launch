@@ -1,0 +1,15 @@
+<!--*H
+Copyright 2017 Transport Systems Catapult (The Catapult)
+All rights reserved
+For use only for the purpose agreed with The Catapult
+H*-->
+
+<launch>
+
+<node pkg="ibeo" type="tcp" 
+     name="ibeo_tcp_node" args="_server_ip:=172.19.5.152"/>
+
+<node pkg="ibeo" type="fusion" 
+     name="ibeo_fusion_node" />
+
+</launch>

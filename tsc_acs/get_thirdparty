@@ -1,0 +1,66 @@
+#!/bin/bash
+
+#Get file path
+SCRIPT=$(readlink -f "$0")
+# Absolute path this script is in, thus /home/user/bin
+SCRIPTPATH="$(dirname "$SCRIPT")"
+
+sudo cp $SCRIPTPATH/bacsLaunch/desktopFiles/pod.png /usr/share/pixmaps/
+
+# ncurses
+sudo apt-get install libncurses5-dev 
+
+#libdc1394-22
+sudo apt-get install libdc1394-22 libdc1394-22-dev
+
+# rosserial_arduino
+sudo apt-get install ros-kinetic-rosserial-arduino ros-kinetic-rosserial 
+
+## ros-canopen
+cd $SCRIPTPATH/..
+git clone https://github.com/ros-industrial/ros_canopen.git -b jade-devel
+sudo apt-get install can-utils 
+sudo apt-get install ros-kinetic-ros-control ros-kinetic-ros-controllers
+
+sudo rm /etc/ros/rosdep/sources.list.d/20-default.list 
+
+sudo rosdep init
+rosdep update
+rosdep install -i -y --from-paths $SCRIPTPATH/ros_canopen
+cd $SCRIPTPATH/../..
+catkin_make --pkg can_msgs canopen_402 canopen_chain_node canopen_master canopen_motor_node ros_canopen socketcan_bridge socketcan_interface
+source devel/setup.bash
+
+## audio package 
+cd $SCRIPTPATH/..
+git clone https://github.com/ros-drivers/audio_common.git
+sudo apt-get install libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev
+rosdep install sound_play
+cd $SCRIPTPATH/../..
+catkin_make --pkg audio_capture audio_common audio_common_msgs audio_play sound_play 
+
+## BB XB3
+if grep -q "#include<stdlib.h>" "/opt/ros/kinetic/include/sensor_msgs/image_encodings.h"; then
+echo "Included"
+else
+  sudo sed -i 's/#include <string>/&\n#include <stdlib.h>/g' /opt/ros/kinetic/include/sensor_msgs/image_encodings.h	
+fi
+
+cd $SCRIPTPATH/..
+git clone https://github.com/ros-drivers/driver_common
+cd $SCRIPTPATH/../..
+catkin_make --pkg driver_base driver_common timestamp_tools
+
+cd $SCRIPTPATH/..
+git clone https://github.com/ros-drivers/camera1394
+cd $SCRIPTPATH/../..
+catkin_make --pkg camera1394
+
+cd $SCRIPTPATH/..
+git clone https://github.com/ravich2-7183/bumblebee_xb3
+cd $SCRIPTPATH/../..
+catkin_make --pkg bumblebee_xb3
+
+cp $SCRIPTPATH/extras/bumblebee_XB3.launch $SCRIPTPATH/bumblebee_xb3/launch/
+
+

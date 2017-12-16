@@ -1,0 +1,147 @@
+<!--*H
+Copyright 2017 Transport Systems Catapult (The Catapult)
+All rights reserved
+For use only for the purpose agreed with The Catapult
+H*-->
+
+<launch>
+
+<!-- ====================== --> 
+<!-- Launch args -->
+<!-- ================= --> 
+
+<arg name="pathFileName"/>
+<arg name="sensor_out_0" default="hz " />
+
+
+<!-- ================== --> 
+<!-- Launch pod_rx_node -->
+<!-- ================== -->
+
+<include file="$(find lutz)/launch/lutz_onAxleStands.launch">
+</include>
+
+<arg name="sensor_out_1" value="$(arg sensor_out_0) /pod_can_rx"/>
+
+
+<!-- ================== --> 
+<!-- Launch mobileye_node -->
+<!-- ================== -->
+
+<include file="$(find mobileye)/launch/mobileye.launch">
+</include>
+
+<arg name="sensor_out_2" value="$(arg sensor_out_1) /mobileye_can_rx"/>
+
+
+<!-- ======================== --> 
+<!-- Launch oxts xnav550 node --> 
+<!-- ======================== --> 
+
+<include file="$(find oxts)/launch/oxts.launch">
+</include>
+
+<arg name="sensor_out_3" value="$(arg sensor_out_2) /imu/data"/>
+
+
+
+<!-- ================ -->
+<!-- Launch Ibeo node -->
+<!-- ================ -->
+
+<include file="$(find ibeo)/launch/ibeo.launch">
+</include>
+
+<arg name="sensor_out_4" value="$(arg sensor_out_3) /ibeo/fusion_object"/>
+
+
+<!-- ========================= -->
+<!-- Launch Bumblebee XB3 node -->
+<!-- ========================= -->
+
+<!--<include file="$(find bumblebee_xb3)/launch/bumblebee_XB3.launch">
+</include>
+-->
+<arg name="sensor_out_5" value="$(arg sensor_out_4) /camera/image_raw"/>
+
+
+<!-- ========================= -->
+<!-- Launch Pod nodes -->
+<!-- ========================= -->
+
+<include file="$(find pod)/launch/pod.launch">
+</include>
+
+<!-- ========================= -->
+<!-- Launch Dead Mans Handle nodes -->
+<!-- ========================= -->
+
+<include file="$(find dead_mans_handle)/launch/speed_limit_on_axle_stands.launch">
+</include>
+
+<!-- ========================= -->
+<!-- Launch Deamand Limiter nodes -->
+<!-- ========================= -->
+
+<include file="$(find demand_limiter)/launch/demand_limiter.launch">
+</include>
+
+<!-- ========================= -->
+<!-- Launch arduino node -->
+<!-- ========================= -->
+
+<include file="$(find arduino)/launch/arduino.launch">
+</include>
+
+<!-- ========================= -->
+<!-- Launch age_checker node -->
+<!-- ========================= -->
+
+<include file="$(find age_checker)/launch/age_checker.launch">
+</include>
+
+<!-- ========================= -->
+<!-- Launch acs nodes -->
+<!-- ========================= -->
+
+<include file="$(find acs)/launch/acs_sim.launch">
+	<arg name="pathFileName" value="$(arg pathFileName)"/>
+</include>
+
+<include file="$(find sim_pod)/launch/sim_pod_hil.launch">
+</include>
+
+<!-- =============== -->
+<!-- Launch rostopic -->
+<!-- =============== -->
+
+<node pkg="rostopic" type="rostopic"
+     name="rostopic_lutz" args="$(arg sensor_out_5)"
+     output="screen" />
+     
+</launch>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

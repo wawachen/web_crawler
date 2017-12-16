@@ -1,0 +1,56 @@
+<!--*H
+Copyright 2017 Transport Systems Catapult (The Catapult)
+All rights reserved
+For use only for the purpose agreed with The Catapult
+H*-->
+
+<launch>
+
+<arg name="pathFileName"/>
+
+<!-- ========================= -->
+<!-- Launch Pod nodes -->
+<!-- ========================= -->
+
+<include file="$(find pod)/launch/control_switch.launch">
+</include>
+
+
+<!-- ========================= -->
+<!-- Launch acs nodes -->
+<!-- ========================= -->
+
+<include file="$(find acs)/launch/acs_sim.launch">
+	<arg name="pathFileName" value="$(arg pathFileName)"/>
+</include>
+
+<include file="$(find sim_pod)/launch/sim_pod.launch">
+</include>
+
+
+</launch>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
